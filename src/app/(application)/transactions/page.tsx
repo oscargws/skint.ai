@@ -1,11 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import PageTemplate from "@/components/page-template";
 
-export default function DashboarDage() {
+export default function TransactionsPage() {
   return (
     <PageTemplate
-      title="Dashboard"
-      description="A birds eye view of your finances"
+      title="Transactions"
+      description="View and categorise your transactions"
       buttonLabel="Add Account"
     >
       <div className="flex flex-col gap-4">
