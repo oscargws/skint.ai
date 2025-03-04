@@ -39,6 +39,8 @@ import { createClient } from "@/utils/supabase/client";
 import { NavSecondary } from "./nav-secondary";
 import Image from "next/image";
 import Link from "next/link";
+import { CommandTrigger } from "./command-trigger";
+import { CommandMenu } from "./command-menu";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const supabase = createClient();
@@ -107,6 +109,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
+        <div className="flex w-full align-center items-center max-w-sm flex-col rounded-lg">
+          <Link href="/" className="flex items-center gap-2 font-medium">
+            <Image src="/logo.png" alt="skint.ai logo" height={32} width={32} />
+            <span>skint.ai</span>
+          </Link>
+        </div>
+      </SidebarHeader>
+      <SidebarHeader>
+        <CommandTrigger />
+        <CommandMenu />
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={navMain} reports={reports} />
+        <NavSecondary items={secondary} className="mt-auto" />
+      </SidebarContent>
+      <SidebarFooter>
         {loading ? (
           <div className="flex items-center space-x-2 p-2">
             <Skeleton className="h-8 w-8 rounded-lg bg-neutral-200" />
@@ -124,19 +142,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             }}
           />
         )}
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={navMain} reports={reports} />
-        <NavSecondary items={secondary} className="mt-auto" />
-      </SidebarContent>
-      {/* <SidebarFooter>
-        <div className="flex w-full align-center items-center max-w-sm flex-col gap-6 rounded-lg p-2 border-2 border-solid">
-          <Link href="/" className="flex items-center gap-2 font-medium">
-            <Image src="/logo.png" alt="skint.ai logo" height={32} width={32} />
-            <span>skint.ai</span>
-          </Link>
-        </div>
-      </SidebarFooter> */}
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
